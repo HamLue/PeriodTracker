@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Period Tracker - Your Cycle Companion</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1><i class="fas fa-heartbeat"></i> Period Tracker</h1>
+                <p>Your personal cycle companion</p>
+                <div class="notification-badge" id="notification-badge" style="display: none;">
+                    <i class="fas fa-bell"></i>
+                    <span id="notification-count">0</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Quick Stats -->
+            <section class="stats-section">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Current Cycle</h3>
+                            <p id="current-cycle">Day 1</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Next Period</h3>
+                            <p id="next-period">In 28 days</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Average Cycle</h3>
+                            <p id="avg-cycle">28 days</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Period Logging -->
+            <section class="logging-section">
+                <div class="section-header">
+                    <h2>Log Your Period</h2>
+                    <p>Track when your period starts and ends</p>
+                </div>
+                <div class="logging-form">
+                    <div class="form-group">
+                        <label for="period-start">Period Start Date:</label>
+                        <input type="date" id="period-start" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="period-end">Period End Date:</label>
+                        <input type="date" id="period-end">
+                    </div>
+                    <div class="form-group">
+                        <label for="flow-intensity">Flow Intensity:</label>
+                        <select id="flow-intensity">
+                            <option value="light">Light</option>
+                            <option value="medium" selected>Medium</option>
+                            <option value="heavy">Heavy</option>
+                        </select>
+                    </div>
+                    <button type="button" id="log-period-btn" class="btn btn-primary">
+                        <i class="fas fa-plus"></i> Log Period
+                    </button>
+                </div>
+            </section>
+
+            <!-- Symptom Tracking -->
+            <section class="symptoms-section">
+                <div class="section-header">
+                    <h2>Track Symptoms</h2>
+                    <p>Monitor how you're feeling during your cycle</p>
+                </div>
+                <div class="symptoms-grid">
+                    <div class="symptom-item">
+                        <input type="checkbox" id="cramps" class="symptom-checkbox">
+                        <label for="cramps">
+                            <i class="fas fa-pain"></i>
+                            Cramps
+                        </label>
+                    </div>
+                    <div class="symptom-item">
+                        <input type="checkbox" id="fatigue" class="symptom-checkbox">
+                        <label for="fatigue">
+                            <i class="fas fa-bed"></i>
+                            Fatigue
+                        </label>
+                    </div>
+                    <div class="symptom-item">
+                        <input type="checkbox" id="mood-swings" class="symptom-checkbox">
+                        <label for="mood-swings">
+                            <i class="fas fa-smile"></i>
+                            Mood Swings
+                        </label>
+                    </div>
+                    <div class="symptom-item">
+                        <input type="checkbox" id="bloating" class="symptom-checkbox">
+                        <label for="bloating">
+                            <i class="fas fa-circle"></i>
+                            Bloating
+                        </label>
+                    </div>
+                    <div class="symptom-item">
+                        <input type="checkbox" id="headache" class="symptom-checkbox">
+                        <label for="headache">
+                            <i class="fas fa-head-side-cough"></i>
+                            Headache
+                        </label>
+                    </div>
+                    <div class="symptom-item">
+                        <input type="checkbox" id="back-pain" class="symptom-checkbox">
+                        <label for="back-pain">
+                            <i class="fas fa-user"></i>
+                            Back Pain
+                        </label>
+                    </div>
+                </div>
+                <button type="button" id="save-symptoms-btn" class="btn btn-secondary">
+                    <i class="fas fa-save"></i> Save Symptoms
+                </button>
+            </section>
+
+            <!-- Calendar View -->
+            <section class="calendar-section">
+                <div class="section-header">
+                    <h2>Cycle Calendar</h2>
+                    <p>Visualize your cycle patterns</p>
+                </div>
+                <div class="calendar-controls">
+                    <button id="prev-month" class="btn btn-outline">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <h3 id="current-month">December 2024</h3>
+                    <button id="next-month" class="btn btn-outline">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                <div class="calendar" id="calendar">
+                    <!-- Calendar will be generated by JavaScript -->
+                </div>
+            </section>
+
+            <!-- Notifications -->
+            <section class="notifications-section">
+                <div class="section-header">
+                    <h2>Notifications</h2>
+                    <p>Stay updated with your cycle predictions and reminders</p>
+                </div>
+                <div class="notifications-list" id="notifications-list">
+                    <!-- Notifications will be populated by JavaScript -->
+                </div>
+            </section>
+
+            <!-- Cycle History -->
+            <section class="history-section">
+                <div class="section-header">
+                    <h2>Cycle History</h2>
+                    <p>View your past cycles and patterns</p>
+                </div>
+                <div class="history-list" id="history-list">
+                    <!-- History will be populated by JavaScript -->
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2024 Period Tracker. Made with ❤️ for women's health.</p>
+        </footer>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="toast">
+        <div class="toast-content">
+            <i class="toast-icon"></i>
+            <span class="toast-message"></span>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
